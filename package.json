@@ -6,7 +6,10 @@
   "scripts": {
     "up": "docker-compose up -d",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/main/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "start": "npm run up && npm run build && npm run start:prod",
+    "start:prod": "node dist/main/index.js"
   },
   "keywords": [],
   "author": "",
