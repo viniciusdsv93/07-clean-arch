@@ -1,4 +1,4 @@
-import { ILoginUser } from "src/domain/usecases/login.user";
+import { ILoginUser } from "../../domain/usecases/login.user";
 
 export class LoginUserController {
 
@@ -22,7 +22,7 @@ export class LoginUserController {
       name,
       password
     })
-
+    console.log({ user })
     if (!user) {
       return {
         statusCode: 403,
@@ -31,7 +31,10 @@ export class LoginUserController {
     }
     return {
       statusCode: 200,
-      message: "Access granted"
+      message: {
+        text: "Access granted",
+        token: user.token
+      }
     }
   }
 }

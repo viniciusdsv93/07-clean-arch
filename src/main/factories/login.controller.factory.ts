@@ -3,8 +3,9 @@ import { PrismaLoginUserRepository } from "../../infra/database/postgres/user-re
 import { LoginUserController } from "../../presentation/controllers/login-user.controller"
 
 export const makeLoginController = () => {
+  const updateUserRepository = new PrismaLoginUserRepository();
   const findUserByNameRepository = new PrismaLoginUserRepository();
-  const loginUserService = new LoginUser(findUserByNameRepository);
+  const loginUserService = new LoginUser(findUserByNameRepository, updateUserRepository);
   const loginController = new LoginUserController(loginUserService);
   return loginController;
 }
